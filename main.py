@@ -77,13 +77,13 @@ print(answer)
 plot_histogram(answer)
 plt.show()
 
-import qiskit.providers.ibmq as ibmq
+from qiskit import IBMQ
 
-# Salvam contul pentru IBMQ
-ibmq.IBMQ.save_account(
-    'dc973ffdb6451d24af97665be6076fc428ae68ae37a63ac2237ff8d4bc1fa136201961ae42a5a2b1bc9e61aea332583136732cbb22df7fbccd90ca9507e65e77')
-ibmq.IBMQ.load_account()
-provider = ibmq.IBMQ.get_provider('ibm-q')
+# Salvam contul pentru IBMQ - fiecare trebuie sa aiba propriul API key de la IBM dar ar trebui sa mearga oricum
+IBMQ.load_account(
+    'b42209b49b1ec9b4d1546b62c5d230143f45b3b1aa904c6fae8b54318852fb296804f394a3da271d6fc9fbb2233cac4b56a94a8cda5080b8c10c7e5c93a962f4')
+provider = IBMQ.get_provider('ibm-q')
+print(provider.get_backends())
 qcomp = provider.get_backend('ibmq_16_melbourne')
 job = transpile(quantum_circuit, qcomp)
 
